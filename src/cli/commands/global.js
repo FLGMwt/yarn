@@ -109,6 +109,10 @@ async function initUpdateBins(config: Config, reporter: Reporter): Promise<() =>
         // already inserted
         continue;
       }
+      if (src.indexOf(".cmd") != -1) {
+        // shouldn't attempt to link .cmd
+        continue;
+      }
 
       // insert new bin
       const dest = path.join(binFolder, path.basename(src));
