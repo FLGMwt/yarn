@@ -111,7 +111,10 @@ async function initUpdateBins(config: Config, reporter: Reporter): Promise<() =>
       }
 
       // insert new bin
-      const dest = path.join(binFolder, path.basename(src));
+      let dest = path.join(binFolder, path.basename(src));
+      if (process.platform === 'win32') {
+        dest = dest.replace('.cmd', '');
+      }
       await fs.unlink(dest);
       await linkBin(src, dest);
     }
