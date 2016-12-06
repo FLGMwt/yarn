@@ -38,6 +38,20 @@ for (let i = 0; i < args.length; i++) {
   }
 }
 
+if (args.indexOf('-d') >= 0) {
+  var attatched = false;
+  var count = 0;
+  let sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+  while (!attatced) {
+      i++;
+      if (i % 3 == 0) {
+        console.log('-d flag given. Waiting for debugger');
+      }
+
+      await sleep(2000);
+  }
+}
+
 // set global options
 commander.version(pkg.version);
 commander.usage('[command] [flags]');
@@ -45,6 +59,7 @@ commander.option('--offline');
 commander.option('--prefer-offline');
 commander.option('--strict-semver');
 commander.option('--json', '');
+commander.option('-d', '');
 commander.option('--global-folder <path>', '');
 commander.option(
   '--modules-folder <path>',
